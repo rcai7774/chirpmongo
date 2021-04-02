@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sign Up for Chirp</title>
+        <script>
+            function signUp() {
+							debugger;
+                let email = document.getElementById("email").value;
+                let result = document.getElementById("result");
+                if (email.indexOf("@") > 1 && email.lastIndexOf(".") > email.indexOf("@")) {
+                    let url = "/verify/" + email;
+                    fetch(url)
+                        .then((response) => response.json())
+
+                        .then((res) => {
+                            result.innerHTML = "An email was sent to " + res.success + ". Please verify your email to begin chirping!";
+                        });
+                } else {
+                    result.innerHTML = "Please input a valid email address to continue.";
+                }
+            }
+        </script>
+    </head>
+    <body class="signup" style = "background-color: LightSeaGreen; font-family: Courier New;">
+        <h1>Sign Up for Chirp ™</h1>
+        <p>Please Provide the information below:</p>
+        <div id="result"></div>
+				<br>
+            Email Address:
+            <input style = "background-color: LightSeaGreen"type="text" id = "email" name="Email Address"/>
+            <br />
+            <button style = "background-color: LightSeaGreen" type="button" onclick = "signUp()">Sign Up</button>
+    </body>
+</html>
